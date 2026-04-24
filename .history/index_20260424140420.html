@@ -26,6 +26,10 @@ body {
 }
 
 /* ─── CUSTOM CURSOR (desktop only) ─── */
+@media (hover: hover) and (pointer: fine) {
+  html, body { cursor: none; }
+  .cursor, .cursor-follower { display: block; }
+}
 .cursor {
   display: none;
   position: fixed;
@@ -37,6 +41,7 @@ body {
   transform: translate(-50%, -50%);
   transition: width .2s, height .2s, background .2s, border-color .2s;
   z-index: 9999;
+  mix-blend-mode: multiply;
 }
 .cursor-follower {
   display: none;
@@ -48,14 +53,10 @@ body {
   pointer-events: none;
   transform: translate(-50%, -50%);
   z-index: 9998;
+  mix-blend-mode: multiply;
 }
 .cursor.hover { width: 40px; height: 40px; background: rgba(255,107,53,.12); }
 .cursor.active { width: 12px; height: 12px; background: var(--orange); border-color: transparent; }
-
-@media (hover: hover) and (pointer: fine) {
-  html, body { cursor: none; }
-  .cursor, .cursor-follower { display: block; }
-}
 
 /* ─── NAV BAR ─── */
 nav {
@@ -159,10 +160,10 @@ nav {
 .nav-toggle-bar::before { transform: translate(-50%, -6px); }
 .nav-toggle-bar::after  { transform: translate(-50%,  6px); }
 
-body.nav-open .nav-toggle { border-color: var(--orange); background: rgba(255,107,53,.1); }
-body.nav-open .nav-toggle .nav-toggle-bar { background: transparent; }
-body.nav-open .nav-toggle .nav-toggle-bar::before { transform: translate(-50%, 0) rotate(45deg);  background: var(--orange); }
-body.nav-open .nav-toggle .nav-toggle-bar::after  { transform: translate(-50%, 0) rotate(-45deg); background: var(--orange); }
+.nav-open .nav-toggle { border-color: var(--orange); background: rgba(255,107,53,.1); }
+.nav-open .nav-toggle .nav-toggle-bar { background: transparent; }
+.nav-open .nav-toggle .nav-toggle-bar::before { transform: translate(-50%, 0) rotate(45deg);  background: var(--orange); }
+.nav-open .nav-toggle .nav-toggle-bar::after  { transform: translate(-50%, 0) rotate(-45deg); background: var(--orange); }
 
 /* ─── FULL-SCREEN MOBILE MENU ─── */
 .nav-menu {
@@ -186,7 +187,7 @@ body.nav-open .nav-toggle .nav-toggle-bar::after  { transform: translate(-50%, 0
               transform .4s cubic-bezier(.25,1,.5,1),
               visibility .4s;
 }
-body.nav-open .nav-menu {
+.nav-open .nav-menu {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
@@ -243,7 +244,6 @@ body.nav-open .nav-menu {
   transition: opacity .4s ease, visibility .4s;
 }
 .nav-open .nav-backdrop { opacity: 1; visibility: visible; pointer-events: auto; }
-body.nav-open .nav-backdrop { opacity: 1; visibility: visible; pointer-events: auto; }
 
 /* ─── FLOATING HIRE ─── */
 .float-hire {
@@ -307,10 +307,10 @@ body.nav-open .nav-backdrop { opacity: 1; visibility: visible; pointer-events: a
 }
 .hero-name {
   font-family: 'Syne', sans-serif;
-  font-size: clamp(2.6rem, 2.6rem + 2.2vw, 5rem);
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: -.02em;
+  font-size: clamp(2.8rem, 4.5vw, 5.2rem);
+  font-weight: 800;
+  line-height: .96;
+  letter-spacing: -.025em;
   color: var(--ink);
 }
 .hero-name .italic {
@@ -457,10 +457,10 @@ body.nav-open .nav-backdrop { opacity: 1; visibility: visible; pointer-events: a
 }
 .heading {
   font-family: 'Syne', sans-serif;
-  font-size: clamp(1.75rem, 1.75rem + 0.8vw, 2.4rem);
-  font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -.015em;
+  font-size: clamp(1.8rem, 2.6vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -.02em;
   color: var(--ink);
 }
 .heading em {
@@ -693,10 +693,10 @@ body.nav-open .nav-backdrop { opacity: 1; visibility: visible; pointer-events: a
 }
 .contact-heading {
   font-family: 'Syne', sans-serif;
-  font-size: clamp(2rem, 2rem + 2vw, 4rem);
-  font-weight: 700;
-  line-height: 1.08;
-  letter-spacing: -.02em;
+  font-size: clamp(2rem, 4vw, 4.4rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -.025em;
   color: #f4f0e8;
   margin-bottom: 20px;
 }
@@ -1239,13 +1239,13 @@ const menu     = document.getElementById('mobile-menu');
 const backdrop = document.getElementById('nav-backdrop');
 
 function openMenu() {
-  document.body.classList.add('nav-open');
+  mainNav.classList.add('nav-open');
   toggle.setAttribute('aria-expanded', 'true');
   menu.setAttribute('aria-hidden', 'false');
   document.body.style.overflow = 'hidden';
 }
 function closeMenu() {
-  document.body.classList.remove('nav-open');
+  mainNav.classList.remove('nav-open');
   toggle.setAttribute('aria-expanded', 'false');
   menu.setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';
@@ -1258,7 +1258,7 @@ document.querySelectorAll('.nav-menu a').forEach(a => {
   a.addEventListener('click', () => setTimeout(closeMenu, 150));
 });
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && document.body.classList.contains('nav-open')) closeMenu();
+  if (e.key === 'Escape' && mainNav.classList.contains('nav-open')) closeMenu();
 });
 
 /* ─── HIDE FLOAT BUTTON NEAR CONTACT ─── */

@@ -26,6 +26,10 @@ body {
 }
 
 /* ─── CUSTOM CURSOR (desktop only) ─── */
+@media (hover: hover) and (pointer: fine) {
+  html, body { cursor: none; }
+  .cursor, .cursor-follower { display: block; }
+}
 .cursor {
   display: none;
   position: fixed;
@@ -51,11 +55,6 @@ body {
 }
 .cursor.hover { width: 40px; height: 40px; background: rgba(255,107,53,.12); }
 .cursor.active { width: 12px; height: 12px; background: var(--orange); border-color: transparent; }
-
-@media (hover: hover) and (pointer: fine) {
-  html, body { cursor: none; }
-  .cursor, .cursor-follower { display: block; }
-}
 
 /* ─── NAV BAR ─── */
 nav {
@@ -307,10 +306,10 @@ body.nav-open .nav-backdrop { opacity: 1; visibility: visible; pointer-events: a
 }
 .hero-name {
   font-family: 'Syne', sans-serif;
-  font-size: clamp(2.6rem, 2.6rem + 2.2vw, 5rem);
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: -.02em;
+  font-size: clamp(2.8rem, 5vw, 5.2rem);
+  font-weight: 800;
+  line-height: .96;
+  letter-spacing: -.025em;
   color: var(--ink);
 }
 .hero-name .italic {
@@ -457,10 +456,10 @@ body.nav-open .nav-backdrop { opacity: 1; visibility: visible; pointer-events: a
 }
 .heading {
   font-family: 'Syne', sans-serif;
-  font-size: clamp(1.75rem, 1.75rem + 0.8vw, 2.4rem);
-  font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -.015em;
+  font-size: clamp(1.9rem, 2.4vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -.02em;
   color: var(--ink);
 }
 .heading em {
@@ -693,10 +692,10 @@ body.nav-open .nav-backdrop { opacity: 1; visibility: visible; pointer-events: a
 }
 .contact-heading {
   font-family: 'Syne', sans-serif;
-  font-size: clamp(2rem, 2rem + 2vw, 4rem);
-  font-weight: 700;
-  line-height: 1.08;
-  letter-spacing: -.02em;
+  font-size: clamp(2rem, 4vw, 4.4rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -.025em;
   color: #f4f0e8;
   margin-bottom: 20px;
 }
