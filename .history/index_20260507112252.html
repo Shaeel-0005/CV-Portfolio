@@ -573,7 +573,7 @@
 
       /* ─── SECTION BASE ─── */
       .sec {
-        padding: 140px 64px;
+        padding: 120px 64px;
         max-width: 1100px;
         margin: 0 auto;
         width: 100%;
@@ -690,31 +690,17 @@
 
       /* ─── PROJECTS ─── */
       .projects-sec {
-        background: var(--ink);
-        padding: 120px 64px;
-      }
-      .projects-inner {
-        max-width: 1100px;
-        margin: 0 auto;
-      }
-      .projects-sec .label {
-        color: rgba(244, 240, 232, 0.38);
-      }
-      .projects-sec .heading {
-        color: #f4f0e8;
-      }
-      .projects-sec .heading em {
-        color: var(--orange);
+        border-top: 1px solid var(--line);
       }
 
-      /* shared tag pill — dark variant */
+      /* shared tag pill */
       .p-tag {
         font-size: 0.61rem;
         letter-spacing: 0.06em;
         text-transform: uppercase;
         padding: 3px 9px;
-        border: 1px solid rgba(244, 240, 232, 0.12);
-        color: rgba(244, 240, 232, 0.38);
+        border: 1px solid var(--line);
+        color: var(--muted);
         border-radius: 6px;
         white-space: nowrap;
       }
@@ -742,247 +728,128 @@
       .p-link-live {
         background: var(--orange);
         color: #fff;
-        box-shadow: 0 2px 12px rgba(255, 107, 53, 0.3);
+        box-shadow: 0 2px 12px rgba(255, 107, 53, 0.25);
       }
       .p-link-live:hover {
         background: var(--red);
         transform: translateY(-1px);
-        box-shadow: 0 4px 18px rgba(201, 56, 32, 0.4);
+        box-shadow: 0 4px 18px rgba(201, 56, 32, 0.3);
       }
       .p-link-gh {
         background: transparent;
-        color: rgba(244, 240, 232, 0.4);
-        border: 1px solid rgba(244, 240, 232, 0.14);
+        color: var(--muted);
+        border: 1px solid var(--line);
       }
       .p-link-gh:hover {
-        border-color: rgba(244, 240, 232, 0.45);
-        color: #f4f0e8;
-        background: rgba(244, 240, 232, 0.07);
+        border-color: var(--ink);
+        color: var(--ink);
+        background: rgba(17, 16, 14, 0.04);
       }
       .p-link-wip {
-        background: rgba(244, 240, 232, 0.04);
-        color: rgba(244, 240, 232, 0.3);
-        border: 1px dashed rgba(244, 240, 232, 0.12);
+        background: rgba(17, 16, 14, 0.05);
+        color: var(--muted);
+        border: 1px dashed rgba(17, 16, 14, 0.15);
         cursor: default;
         font-style: italic;
       }
 
-      /* ══ BENTO FEATURED GRID ══ */
-      .bento-grid {
+      /* ── FEATURED CARDS (full-stack projects) ── */
+      .feat-grid {
         display: grid;
-        grid-template-columns: repeat(12, 1fr);
-        gap: 16px;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
         margin-top: 52px;
       }
-
-      /* Card 01: wide (7 cols) */
-      .bento-card-wide { grid-column: span 7; }
-      /* Card 02: narrow (5 cols) */
-      .bento-card-narrow { grid-column: span 5; }
-      /* Card 03: full width, landscape */
-      .bento-card-full { grid-column: span 12; }
-
-      .bento-card {
-        background: rgba(244, 240, 232, 0.035);
-        border: 1px solid rgba(244, 240, 232, 0.08);
+      .feat-card {
+        background: var(--card);
         border-radius: 20px;
-        overflow: hidden;
+        padding: 32px 28px 28px;
         display: flex;
         flex-direction: column;
-        transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        gap: 0;
+        border: 1px solid transparent;
+        transition:
+          border-color 0.2s,
+          transform 0.25s,
+          box-shadow 0.25s;
         position: relative;
+        overflow: hidden;
       }
-      .bento-card:hover {
-        border-color: rgba(255, 107, 53, 0.38);
-        transform: translateY(-6px);
-        box-shadow: 0 28px 72px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 107, 53, 0.12);
-      }
-
-      /* Top accent line on hover */
-      .bento-card::after {
+      .feat-card::before {
         content: "";
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
-        height: 2px;
-        background: linear-gradient(90deg, var(--orange), var(--red));
+        height: 3px;
+        background: var(--orange);
         transform: scaleX(0);
         transform-origin: left;
-        transition: transform 0.35s ease;
-        z-index: 3;
+        transition: transform 0.3s ease;
       }
-      .bento-card:hover::after {
+      .feat-card:hover {
+        border-color: rgba(255, 107, 53, 0.2);
+        transform: translateY(-5px);
+        box-shadow: 0 20px 56px rgba(17, 16, 14, 0.09);
+      }
+      .feat-card:hover::before {
         transform: scaleX(1);
       }
 
-      /* ── Media thumbnail ── */
-      .bento-media {
-        position: relative;
-        width: 100%;
-        aspect-ratio: 16 / 9;
-        overflow: hidden;
-        background: #0d0c0b;
-        flex-shrink: 0;
-      }
-      /* Full-width card has a shorter media strip */
-      .bento-card-full .bento-media {
-        aspect-ratio: unset;
-        height: 220px;
-      }
-      .bento-media img {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: opacity 0.45s ease;
-        will-change: opacity;
-      }
-      .bento-media .proj-thumb {
-        opacity: 1;
-        z-index: 1;
-      }
-      .bento-media .proj-gif {
-        opacity: 0;
-        z-index: 2;
-      }
-      .bento-card:hover .proj-thumb {
-        opacity: 0;
-      }
-      .bento-card:hover .proj-gif {
-        opacity: 1;
-      }
-
-      /* Gradient overlay at bottom of media */
-      .bento-media::before {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 50%;
-        background: linear-gradient(to top, rgba(17, 16, 14, 0.7) 0%, transparent 100%);
-        z-index: 3;
-        pointer-events: none;
-      }
-
-      /* Hover hint badge */
-      .bento-hover-hint {
-        position: absolute;
-        bottom: 10px;
-        right: 12px;
-        font-size: 0.55rem;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: rgba(244, 240, 232, 0.5);
-        background: rgba(0, 0, 0, 0.55);
-        padding: 3px 9px;
-        border-radius: 999px;
-        backdrop-filter: blur(6px);
-        z-index: 4;
-        transition: opacity 0.25s;
-        border: 1px solid rgba(244, 240, 232, 0.1);
-      }
-      .bento-card:hover .bento-hover-hint {
-        opacity: 0;
-        pointer-events: none;
-      }
-
-      /* Project number badge (inside media, top-left) */
-      .bento-num-badge {
-        position: absolute;
-        top: 12px;
-        left: 14px;
+      .feat-num {
         font-family: "Lora", serif;
         font-style: italic;
-        font-size: 0.68rem;
-        color: rgba(244, 240, 232, 0.7);
-        background: rgba(0, 0, 0, 0.5);
-        padding: 3px 9px;
-        border-radius: 999px;
-        backdrop-filter: blur(6px);
-        z-index: 4;
-        border: 1px solid rgba(244, 240, 232, 0.1);
-      }
-
-      /* Card body */
-      .bento-body {
-        padding: 22px 24px 22px;
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-      }
-      .bento-card-full .bento-body {
-        padding: 24px 28px 24px;
-      }
-      .bento-name {
-        font-family: "Syne", sans-serif;
-        font-size: 1rem;
-        font-weight: 700;
-        color: #f4f0e8;
-        margin-bottom: 8px;
-        line-height: 1.2;
-        transition: color 0.2s;
-      }
-      .bento-card:hover .bento-name {
+        font-size: 0.75rem;
         color: var(--orange);
+        margin-bottom: 18px;
+        opacity: 0.7;
       }
-      .bento-desc {
-        font-size: 0.8rem;
-        line-height: 1.72;
-        color: rgba(244, 240, 232, 0.48);
+      .feat-name {
+        font-family: "Syne", sans-serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--ink);
+        margin-bottom: 10px;
+        line-height: 1.25;
+      }
+      .feat-desc {
+        font-size: 0.82rem;
+        line-height: 1.7;
+        color: #5a5248;
         font-weight: 300;
         flex: 1;
-        margin-bottom: 16px;
+        margin-bottom: 20px;
       }
-      .bento-tags {
+      .feat-tags {
         display: flex;
         flex-wrap: wrap;
         gap: 5px;
-        margin-bottom: 18px;
+        margin-bottom: 20px;
       }
-      .bento-links {
+      .feat-links {
         display: flex;
         gap: 8px;
         flex-wrap: wrap;
         margin-top: auto;
       }
 
-      /* Full-width card internal layout (media left, body right on desktop) */
-      .bento-card-full {
-        flex-direction: row;
-      }
-      .bento-card-full .bento-media {
-        width: 40%;
-        height: auto;
-        flex-shrink: 0;
-      }
-      .bento-card-full .bento-body {
-        flex: 1;
-        justify-content: center;
-      }
-      .bento-card-full .bento-name {
-        font-size: 1.1rem;
-      }
-
-      /* ══ CLIENT WORK STRIP ══ */
+      /* ── CLIENT WORK STRIP ── */
       .client-strip-header {
         display: flex;
         align-items: baseline;
         justify-content: space-between;
         gap: 16px;
         margin-top: 80px;
-        margin-bottom: 36px;
+        margin-bottom: 24px;
         padding-top: 64px;
-        border-top: 1px solid rgba(244, 240, 232, 0.07);
+        border-top: 1px solid var(--line);
       }
       .client-strip-title {
         font-family: "Syne", sans-serif;
         font-size: clamp(1.4rem, 1.4rem + 0.5vw, 1.9rem);
         font-weight: 700;
         letter-spacing: -0.015em;
-        color: #f4f0e8;
+        color: var(--ink);
       }
       .client-strip-title em {
         font-family: "Lora", serif;
@@ -990,522 +857,263 @@
         font-weight: 400;
         color: var(--orange);
       }
-      .client-strip-meta {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-      }
       .client-strip-note {
         font-size: 0.72rem;
         letter-spacing: 0.08em;
         text-transform: uppercase;
-        color: rgba(244, 240, 232, 0.3);
+        color: var(--muted);
         white-space: nowrap;
       }
-      .client-scroll-hint {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        font-size: 0.65rem;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: rgba(244, 240, 232, 0.2);
-        white-space: nowrap;
-      }
-      .client-scroll-hint svg {
-        width: 18px;
-        height: 12px;
-        opacity: 0.4;
-      }
 
-      /* ── Scroll container ── */
-      .client-scroll-wrap {
-        position: relative;
-        /* bleed past section padding so cards feel full-bleed */
-        margin-left: -64px;
-        margin-right: -64px;
+      .client-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 12px;
       }
-      .client-scroll-track {
-        display: flex;
-        gap: 20px;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        padding: 4px 64px 32px;
-        cursor: grab;
-      }
-      .client-scroll-track:active { cursor: grabbing; }
-      .client-scroll-track::-webkit-scrollbar { display: none; }
-
-      /* ── Individual slide card ── */
-      .client-slide {
-        flex-shrink: 0;
-        width: clamp(300px, 38vw, 480px);
-        scroll-snap-align: start;
+      .client-card {
+        background: var(--card);
+        border-radius: 16px;
+        padding: 22px 18px 20px;
+        text-decoration: none;
         display: flex;
         flex-direction: column;
-        gap: 0;
-      }
-
-      /* Thumbnail block */
-      .client-slide-thumb {
+        gap: 8px;
+        border: 1px solid transparent;
+        transition:
+          border-color 0.2s,
+          transform 0.2s,
+          box-shadow 0.2s;
         position: relative;
-        width: 100%;
-        aspect-ratio: 16 / 10;
-        border-radius: 16px;
-        overflow: hidden;
-        background: rgba(244, 240, 232, 0.04);
-        border: 1px solid rgba(244, 240, 232, 0.07);
-        transition: border-color 0.3s ease, box-shadow 0.3s ease;
       }
-      .client-slide:hover .client-slide-thumb {
-        border-color: rgba(255, 107, 53, 0.35);
-        box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55);
+      .client-card:hover {
+        border-color: rgba(255, 107, 53, 0.25);
+        transform: translateY(-3px);
+        box-shadow: 0 12px 36px rgba(17, 16, 14, 0.07);
       }
-      .client-slide-thumb img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: top;
-        transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), filter 0.4s ease;
-        filter: saturate(0.7) brightness(0.88);
+      .client-card:hover .client-name {
+        color: var(--orange);
       }
-      .client-slide:hover .client-slide-thumb img {
-        transform: scale(1.04);
-        filter: saturate(0.85) brightness(0.95);
-      }
-
-      /* Gradient overlay on thumb */
-      .client-slide-thumb::after {
-        content: "";
+      .client-arrow {
         position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          180deg,
-          transparent 40%,
-          rgba(17, 16, 14, 0.72) 100%
-        );
-        pointer-events: none;
-        border-radius: inherit;
-        transition: opacity 0.3s;
+        top: 16px;
+        right: 16px;
+        font-size: 0.9rem;
+        color: var(--orange);
+        opacity: 0;
+        transition:
+          opacity 0.2s,
+          transform 0.2s;
       }
-      .client-slide:hover .client-slide-thumb::after {
-        opacity: 0.6;
+      .client-card:hover .client-arrow {
+        opacity: 1;
+        transform: translate(2px, -2px);
       }
-
-      /* Industry badge on thumb */
-      .client-slide-badge {
-        position: absolute;
-        top: 14px;
-        left: 14px;
-        font-size: 0.58rem;
+      .client-industry {
+        font-size: 0.6rem;
         letter-spacing: 0.12em;
         text-transform: uppercase;
-        color: rgba(255, 107, 53, 0.9);
-        background: rgba(17, 16, 14, 0.72);
-        border: 1px solid rgba(255, 107, 53, 0.22);
-        padding: 3px 9px;
-        border-radius: 999px;
-        backdrop-filter: blur(8px);
-        z-index: 2;
+        color: var(--orange);
         font-weight: 500;
       }
-
-      /* Index number in corner */
-      .client-slide-idx {
-        position: absolute;
-        top: 14px;
-        right: 14px;
-        font-family: "Lora", serif;
-        font-style: italic;
-        font-size: 0.68rem;
-        color: rgba(244, 240, 232, 0.35);
-        background: rgba(0, 0, 0, 0.45);
-        padding: 2px 8px;
-        border-radius: 999px;
-        backdrop-filter: blur(6px);
-        z-index: 2;
-      }
-
-      /* ── Card footer (below thumb) ── */
-      .client-slide-footer {
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
-        gap: 16px;
-        padding: 18px 4px 0;
-      }
-      .client-slide-info { flex: 1; min-width: 0; }
-      .client-slide-name {
+      .client-name {
         font-family: "Syne", sans-serif;
-        font-size: 0.95rem;
+        font-size: 0.9rem;
         font-weight: 700;
-        color: rgba(244, 240, 232, 0.88);
-        margin-bottom: 4px;
+        color: var(--ink);
         transition: color 0.2s;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        line-height: 1.2;
       }
-      .client-slide:hover .client-slide-name { color: var(--orange); }
-      .client-slide-desc {
+      .client-desc {
         font-size: 0.73rem;
+        color: var(--muted);
         line-height: 1.55;
-        color: rgba(244, 240, 232, 0.32);
         font-weight: 300;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
       }
-      .client-slide-stack {
+      .client-stack {
         display: flex;
         flex-wrap: wrap;
         gap: 4px;
-        margin-top: 8px;
+        margin-top: 4px;
       }
       .client-tag {
-        font-size: 0.55rem;
-        letter-spacing: 0.06em;
+        font-size: 0.58rem;
+        letter-spacing: 0.05em;
         text-transform: uppercase;
         padding: 2px 7px;
-        border: 1px solid rgba(244, 240, 232, 0.1);
-        color: rgba(244, 240, 232, 0.28);
+        border: 1px solid var(--line);
+        color: var(--muted);
         border-radius: 4px;
       }
 
-      /* Visit button */
-      .client-slide-visit {
-        flex-shrink: 0;
-        display: inline-flex;
-        align-items: center;
-        gap: 5px;
-        font-size: 0.67rem;
-        font-weight: 500;
-        letter-spacing: 0.07em;
-        text-transform: uppercase;
-        text-decoration: none;
-        color: var(--orange);
-        border: 1px solid rgba(255, 107, 53, 0.28);
-        padding: 7px 13px;
-        border-radius: 999px;
-        white-space: nowrap;
-        margin-top: 2px;
-        transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
-      }
-      .client-slide-visit svg {
-        width: 9px;
-        height: 9px;
-        flex-shrink: 0;
-      }
-      .client-slide-visit:hover {
-        background: var(--orange);
-        color: #fff;
-        border-color: var(--orange);
-        transform: translateY(-1px);
-        box-shadow: 0 4px 16px rgba(255, 107, 53, 0.35);
-      }
-
-      /* Scroll progress bar */
-      .client-scroll-progress {
-        height: 1px;
-        background: rgba(244, 240, 232, 0.06);
-        margin: 0 64px;
-        border-radius: 999px;
-        overflow: hidden;
-      }
-      .client-scroll-bar {
-        height: 100%;
-        background: linear-gradient(90deg, var(--orange), var(--red));
-        border-radius: 999px;
-        width: 20%;
-        transition: width 0.1s linear;
-      }
-
-      /* Nav arrows */
-      .client-scroll-nav {
+      /* ── FRONTEND MINI-GRID ── */
+      .fp-header {
         display: flex;
-        gap: 8px;
-        align-self: center;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 16px;
+        margin-top: 80px;
+        padding-top: 64px;
+        border-top: 1px solid var(--line);
+        flex-wrap: wrap;
       }
-      .client-scroll-btn {
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        background: rgba(244, 240, 232, 0.06);
-        border: 1px solid rgba(244, 240, 232, 0.1);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: background 0.2s, border-color 0.2s;
-        color: rgba(244, 240, 232, 0.5);
-      }
-      .client-scroll-btn:hover {
-        background: rgba(255, 107, 53, 0.12);
-        border-color: rgba(255, 107, 53, 0.3);
-        color: var(--orange);
-      }
-      .client-scroll-btn svg {
-        width: 14px;
-        height: 14px;
-      }
-
-      @media (max-width: 768px) {
-        .client-scroll-wrap {
-          margin-left: -20px;
-          margin-right: -20px;
-        }
-        .client-scroll-track {
-          padding: 4px 20px 28px;
-          gap: 14px;
-        }
-        .client-slide {
-          width: clamp(260px, 75vw, 340px);
-        }
-        .client-scroll-progress { margin: 0 20px; }
-        .client-strip-header { flex-direction: column; gap: 10px; }
-        .client-strip-meta { justify-content: space-between; width: 100%; }
-      }
-      @media (max-width: 480px) {
-        .client-scroll-wrap { margin-left: -16px; margin-right: -16px; }
-        .client-scroll-track { padding: 4px 16px 24px; }
-      }
-
-      /* ══ FRONTEND BUILDS — LIGHT SECTION ══ */
-      .fp-sec {
-        background: #F4F0E8;
-        padding: 140px 64px 160px;
-        text-align: center;
-        position: relative;
-        overflow: hidden;
-      }
-      /* subtle dot-grid texture */
-      .fp-sec::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background-image: radial-gradient(circle, rgba(17,16,14,0.055) 1px, transparent 1px);
-        background-size: 28px 28px;
-        pointer-events: none;
-      }
-
-      .fp-eyebrow {
-        font-size: 0.72rem;
-        font-weight: 600;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: var(--orange);
-        margin-bottom: 20px;
-        display: block;
-      }
-      .fp-big-title {
+      .fp-title {
         font-family: "Syne", sans-serif;
-        font-size: clamp(2rem, 2rem + 2.2vw, 3.8rem);
-        font-weight: 800;
-        line-height: 1.1;
-        letter-spacing: -0.025em;
+        font-size: clamp(1.4rem, 1.4rem + 0.5vw, 1.9rem);
+        font-weight: 700;
+        letter-spacing: -0.015em;
         color: var(--ink);
-        margin-bottom: 20px;
       }
-      .fp-big-title em {
+      .fp-title em {
         font-family: "Lora", serif;
         font-style: italic;
         font-weight: 400;
         color: var(--orange);
       }
-      .fp-big-sub {
-        font-size: 0.95rem;
-        line-height: 1.75;
-        color: #7a7268;
-        max-width: 460px;
-        margin: 0 auto 44px;
+      .fp-sub {
+        font-size: 0.8rem;
+        color: var(--muted);
+        margin-top: 6px;
         font-weight: 300;
       }
-      .fp-cta-row {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 14px;
-        margin-bottom: 80px;
-      }
-      .fp-cta-btn {
+      .fp-all-link {
         display: inline-flex;
         align-items: center;
-        gap: 0;
-        font-size: 0.82rem;
+        gap: 7px;
+        font-size: 0.72rem;
         font-weight: 500;
-        letter-spacing: 0.02em;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
         text-decoration: none;
-        color: var(--ink);
-        background: #fff;
-        border: 1px solid rgba(17,16,14,0.14);
-        padding: 11px 22px;
+        color: var(--muted);
+        border: 1px solid var(--line);
+        padding: 8px 16px;
         border-radius: 999px;
-        transition: border-color 0.2s, box-shadow 0.2s;
-        box-shadow: 0 2px 12px rgba(17,16,14,0.06);
-      }
-      .fp-cta-btn:hover {
-        border-color: rgba(17,16,14,0.3);
-        box-shadow: 0 4px 20px rgba(17,16,14,0.1);
-      }
-      .fp-cta-orb {
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        background: var(--orange);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #fff;
-        margin-left: 10px;
+        transition: all 0.2s;
+        white-space: nowrap;
         flex-shrink: 0;
-        transition: transform 0.2s, background 0.2s;
-        box-shadow: 0 4px 14px rgba(255,107,53,0.4);
       }
-      .fp-cta-btn:hover .fp-cta-orb {
-        transform: translateX(3px);
-        background: var(--red);
-      }
-      .fp-cta-orb svg { width: 14px; height: 14px; }
-
-      /* ── Fan gallery ── */
-      .fp-fan {
-        position: relative;
-        width: 100%;
-        /* reserve height so labels don't clip */
-        min-height: 420px;
-        display: flex;
-        align-items: flex-end;
-        justify-content: center;
-        gap: 0;
-        perspective: 1400px;
-        margin-bottom: 0;
+      .fp-all-link:hover {
+        border-color: var(--ink);
+        color: var(--ink);
+        background: rgba(17, 16, 14, 0.04);
       }
 
-      .fp-fan-item {
-        position: relative;
-        flex-shrink: 0;
+      .fp-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+        margin-top: 28px;
+      }
+      .fp-card {
+        background: var(--bg);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 24px 22px 20px;
+        text-decoration: none;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        gap: 0;
-        /* stagger z so neighbours slightly overlap */
-        transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
-                    z-index 0.1s,
-                    filter 0.4s ease;
-        cursor: pointer;
+        transition:
+          border-color 0.2s,
+          transform 0.2s,
+          background 0.2s;
+        position: relative;
       }
-
-      /* widths */
-      .fp-fan-item.center  { width: clamp(180px, 16vw, 230px); z-index: 5; }
-      .fp-fan-item.near    { width: clamp(150px, 13vw, 190px); z-index: 4; }
-      .fp-fan-item.far     { width: clamp(120px, 10vw, 155px); z-index: 3; }
-      .fp-fan-item.edge    { width: clamp(90px, 8vw, 120px);  z-index: 2; }
-
-      /* perspective tilts */
-      .fp-fan-item.left-near  { transform: perspective(1400px) rotateY(18deg) translateX(20px); }
-      .fp-fan-item.left-far   { transform: perspective(1400px) rotateY(32deg) translateX(36px) scaleY(0.94); filter: brightness(0.85); }
-      .fp-fan-item.left-edge  { transform: perspective(1400px) rotateY(46deg) translateX(50px) scaleY(0.88); filter: brightness(0.7); }
-      .fp-fan-item.right-near { transform: perspective(1400px) rotateY(-18deg) translateX(-20px); }
-      .fp-fan-item.right-far  { transform: perspective(1400px) rotateY(-32deg) translateX(-36px) scaleY(0.94); filter: brightness(0.85); }
-      .fp-fan-item.right-edge { transform: perspective(1400px) rotateY(-46deg) translateX(-50px) scaleY(0.88); filter: brightness(0.7); }
-
-      /* hover: straighten and lift */
-      .fp-fan-item:hover {
-        transform: perspective(1400px) rotateY(0deg) translateY(-16px) scale(1.03) !important;
-        filter: brightness(1) !important;
-        z-index: 10 !important;
+      .fp-card:hover {
+        border-color: var(--orange);
+        background: var(--card);
+        transform: translateY(-3px);
       }
-
-      .fp-fan-thumb {
-        width: 100%;
-        border-radius: 18px;
-        overflow: hidden;
-        aspect-ratio: 3 / 4;
-        box-shadow: 0 18px 60px rgba(17,16,14,0.16), 0 4px 12px rgba(17,16,14,0.08);
-        border: 1px solid rgba(17,16,14,0.06);
-        transition: box-shadow 0.4s ease;
-      }
-      .fp-fan-item:hover .fp-fan-thumb {
-        box-shadow: 0 32px 80px rgba(17,16,14,0.22), 0 0 0 2px rgba(255,107,53,0.3);
-      }
-      .fp-fan-thumb img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: top;
-        display: block;
-        transition: transform 0.5s ease;
-      }
-      .fp-fan-item:hover .fp-fan-thumb img {
-        transform: scale(1.06);
-      }
-
-      /* Label below card */
-      .fp-fan-label {
-        margin-top: 20px;
-        text-align: center;
-      }
-      .fp-fan-num {
-        font-size: 0.65rem;
-        font-weight: 700;
-        letter-spacing: 0.08em;
+      .fp-card:hover .fp-card-name {
         color: var(--orange);
-        margin-bottom: 4px;
       }
-      .fp-fan-name {
+      .fp-card:hover .fp-arrow {
+        opacity: 1;
+        transform: translate(2px, -2px);
+      }
+      .fp-icon {
+        font-size: 1.4rem;
+        margin-bottom: 12px;
+      }
+      .fp-card-name {
         font-family: "Syne", sans-serif;
-        font-size: 0.82rem;
+        font-size: 0.9rem;
         font-weight: 700;
         color: var(--ink);
-        white-space: nowrap;
+        margin-bottom: 7px;
+        transition: color 0.2s;
       }
-      /* hide labels on tilted edge cards */
-      .fp-fan-item.left-edge .fp-fan-label,
-      .fp-fan-item.right-edge .fp-fan-label { opacity: 0; }
-      .fp-fan-item.left-far .fp-fan-label,
-      .fp-fan-item.right-far .fp-fan-label { opacity: 0.4; }
-
-      /* the invisible anchor link wrapping each item */
-      .fp-fan-link {
-        display: contents;
-        text-decoration: none;
+      .fp-card-desc {
+        font-size: 0.77rem;
+        color: var(--muted);
+        line-height: 1.6;
+        font-weight: 300;
+        flex: 1;
       }
-
-      @media (max-width: 900px) {
-        .fp-sec { padding: 100px 24px 120px; }
-        .fp-fan-item.left-edge, .fp-fan-item.right-edge { display: none; }
-        .fp-fan-item.center  { width: clamp(160px, 28vw, 200px); }
-        .fp-fan-item.near    { width: clamp(130px, 22vw, 165px); }
-        .fp-fan-item.far     { width: clamp(100px, 17vw, 135px); }
+      .fp-card-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 16px;
       }
-      @media (max-width: 600px) {
-        .fp-sec { padding: 80px 20px 100px; }
-        .fp-fan { min-height: 320px; }
-        .fp-fan-item.left-far, .fp-fan-item.right-far { display: none; }
-        .fp-fan-item.center { width: clamp(140px, 40vw, 180px); }
-        .fp-fan-item.near   { width: clamp(110px, 30vw, 145px); }
-        .fp-big-title { font-size: clamp(1.7rem, 7vw, 2.4rem); }
+      .fp-tags-row {
+        display: flex;
+        gap: 5px;
+        flex-wrap: wrap;
+      }
+      .fp-arrow {
+        font-size: 0.9rem;
+        color: var(--orange);
+        opacity: 0.3;
+        transition: all 0.2s;
       }
 
-      /* ══ BENTO RESPONSIVE ══ */
+      /* ── RESPONSIVE ── */
       @media (max-width: 1024px) {
-        .bento-card-wide  { grid-column: span 12; }
-        .bento-card-narrow { grid-column: span 12; }
-        .bento-card-full  { grid-column: span 12; flex-direction: column; }
-        .bento-card-full .bento-media { width: 100%; height: 200px; }
+        .feat-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .client-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .fp-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
       }
       @media (max-width: 768px) {
-        .projects-sec { padding: 72px 20px; }
-        .bento-grid { grid-template-columns: 1fr; gap: 12px; }
-        .bento-card-wide, .bento-card-narrow, .bento-card-full { grid-column: span 1; }
-        .bento-card-full { flex-direction: column; }
-        .bento-card-full .bento-media { width: 100%; height: auto; aspect-ratio: 16/9; }
+        .feat-grid {
+          grid-template-columns: 1fr;
+          gap: 14px;
+        }
+        .client-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 10px;
+        }
+        .fp-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 10px;
+        }
+        .client-strip-header {
+          flex-direction: column;
+          gap: 6px;
+        }
+        .fp-header {
+          flex-direction: column;
+          gap: 10px;
+        }
+        .fp-all-link {
+          align-self: flex-start;
+        }
       }
       @media (max-width: 480px) {
-        .projects-sec { padding: 56px 16px; }
+        .client-grid {
+          grid-template-columns: 1fr;
+        }
+        .fp-grid {
+          grid-template-columns: 1fr;
+        }
+        .feat-card {
+          padding: 24px 20px 20px;
+        }
       }
 
       /* ─── SKILLS ─── */
@@ -2150,405 +1758,416 @@
       </section>
 
       <!-- ─── PROJECTS ─── -->
-      <section class="projects-sec" id="work">
-        <div class="projects-inner">
-          <div class="label r">Selected Work</div>
-          <h2 class="heading r">Built, shipped,<br /><em>and live.</em></h2>
+      <section class="sec projects-sec" id="work">
+        <div class="label r">Selected Work</div>
+        <h2 class="heading r">Built, shipped,<br /><em>and live.</em></h2>
 
-          <!-- BENTO FEATURED GRID -->
-          <div class="bento-grid">
-
-            <!-- Card 01: AquaFlow — wide -->
-            <div class="bento-card bento-card-wide r">
-              <div class="bento-media">
-                <img class="proj-thumb"
-                  src="assets/projects/AquaFlow.png"
-                  alt="AquaFlow preview" loading="lazy" />
-                <img class="proj-gif" src="" data-gif="YOUR_AQUAFLOW_GIF.gif" alt="AquaFlow demo" />
-                <span class="bento-num-badge">01 — Full Stack</span>
-                <span class="bento-hover-hint">Hover to preview</span>
-              </div>
-              <div class="bento-body">
-                <div class="bento-name">AquaFlow — Water Delivery System</div>
-                <div class="bento-desc">
-                  Multi-role web app for ordering water, managing subscriptions and delivery locations.
-                  Admins, delivery vans, delivery boys, and customers each get their own dashboard.
-                  Built with Flask and live on Render.
-                </div>
-                <div class="bento-tags">
-                  <span class="p-tag">Python</span>
-                  <span class="p-tag">Flask</span>
-                  <span class="p-tag">SQLite</span>
-                  <span class="p-tag">Jinja2</span>
-                  <span class="p-tag">Multi-role Auth</span>
-                </div>
-                <div class="bento-links">
-                  <a href="https://aquaflow-water-delivery.onrender.com/login" target="_blank" rel="noopener" class="p-link p-link-live">
-                    <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8">
-                      <circle cx="6" cy="6" r="4.5"/><path d="M6 1.5c-1.5 1.5-1.5 7.5 0 9M6 1.5c1.5 1.5 1.5 7.5 0 9M1.5 6h9"/>
-                    </svg>Live Site
-                  </a>
-                  <a href="https://github.com/Shaeel-0005/Drinking-Water-Delivery-System" target="_blank" rel="noopener" class="p-link p-link-gh">
-                    <svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 .5A5.5 5.5 0 0 0 .5 6c0 2.43 1.57 4.49 3.75 5.22.27.05.37-.12.37-.26v-.93C3.03 10.3 2.7 9.2 2.7 9.2c-.26-.65-.63-.82-.63-.82-.51-.35.04-.34.04-.34.57.04.86.58.86.58.5.86 1.31.61 1.63.47.05-.36.2-.61.36-.75-1.24-.14-2.55-.62-2.55-2.77 0-.61.22-1.11.58-1.5-.06-.14-.25-.71.05-1.48 0 0 .47-.15 1.54.57A5.38 5.38 0 0 1 6 2.8c.48 0 .96.06 1.41.19 1.07-.72 1.54-.57 1.54-.57.3.77.11 1.34.05 1.48.36.39.58.89.58 1.5 0 2.15-1.31 2.63-2.56 2.77.2.17.38.51.38 1.03v1.53c0 .14.1.31.38.26A5.5 5.5 0 0 0 11.5 6 5.5 5.5 0 0 0 6 .5Z"/></svg>GitHub
-                  </a>
-                </div>
-              </div>
+        <!-- TIER 1: Featured Projects -->
+        <div class="feat-grid">
+          <div class="feat-card r">
+            <div class="feat-num">01 — Full Stack</div>
+            <div class="feat-name">AquaFlow — Water Delivery System</div>
+            <div class="feat-desc">
+              Multi-role web app for ordering water, managing subscriptions and
+              delivery locations. Admins, delivery vans, delivery boys, and
+              customers each get their own dashboard. Built with Flask and live
+              on Render.
             </div>
-
-            <!-- Card 02: LeadFlow — narrow -->
-            <div class="bento-card bento-card-narrow rd">
-              <div class="bento-media">
-                <img class="proj-thumb"
-                  src="assets/projects/crm.png"
-                  alt="LeadFlow preview" loading="lazy" />
-                <img class="proj-gif" src="" data-gif="assets/projects/crm.gif" alt="LeadFlow demo" />
-                <span class="bento-num-badge">02 — SaaS</span>
-                <span class="bento-hover-hint">Hover to preview</span>
-              </div>
-              <div class="bento-body">
-                <div class="bento-name">LeadFlow — Micro-CRM SaaS</div>
-                <div class="bento-desc">
-                  CRM for freelancers and agencies. Lead tracking with status pipelines,
-                  follow-up reminders, activity logs, and a live analytics dashboard.
-                  API-first Django backend, React frontend.
-                </div>
-                <div class="bento-tags">
-                  <span class="p-tag">React</span>
-                  <span class="p-tag">Django REST</span>
-                  <span class="p-tag">PostgreSQL</span>
-                  <span class="p-tag">Redis</span>
-                  <span class="p-tag">Celery</span>
-                  <span class="p-tag">Docker</span>
-                </div>
-                <div class="bento-links">
-                  <a href="https://micro-crm-ten.vercel.app/" target="_blank" rel="noopener" class="p-link p-link-live">
-                    <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8">
-                      <circle cx="6" cy="6" r="4.5"/><path d="M6 1.5c-1.5 1.5-1.5 7.5 0 9M6 1.5c1.5 1.5 1.5 7.5 0 9M1.5 6h9"/>
-                    </svg>Live Site
-                  </a>
-                  <a href="https://github.com/Shaeel-0005/Micro-CRM" target="_blank" rel="noopener" class="p-link p-link-gh">
-                    <svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 .5A5.5 5.5 0 0 0 .5 6c0 2.43 1.57 4.49 3.75 5.22.27.05.37-.12.37-.26v-.93C3.03 10.3 2.7 9.2 2.7 9.2c-.26-.65-.63-.82-.63-.82-.51-.35.04-.34.04-.34.57.04.86.58.86.58.5.86 1.31.61 1.63.47.05-.36.2-.61.36-.75-1.24-.14-2.55-.62-2.55-2.77 0-.61.22-1.11.58-1.5-.06-.14-.25-.71.05-1.48 0 0 .47-.15 1.54.57A5.38 5.38 0 0 1 6 2.8c.48 0 .96.06 1.41.19 1.07-.72 1.54-.57 1.54-.57.3.77.11 1.34.05 1.48.36.39.58.89.58 1.5 0 2.15-1.31 2.63-2.56 2.77.2.17.38.51.38 1.03v1.53c0 .14.1.31.38.26A5.5 5.5 0 0 0 11.5 6 5.5 5.5 0 0 0 6 .5Z"/></svg>GitHub
-                  </a>
-                </div>
-              </div>
+            <div class="feat-tags">
+              <span class="p-tag">Python</span><span class="p-tag">Flask</span
+              ><span class="p-tag">SQLite</span><span class="p-tag">Jinja2</span
+              ><span class="p-tag">Multi-role Auth</span>
             </div>
-
-            <!-- Card 03: Wheel4u — full width landscape -->
-            <div class="bento-card bento-card-full r">
-              <div class="bento-media">
-                <img class="proj-thumb"
-                  src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1200&q=80&fit=crop"
-                  alt="Wheel4u preview" loading="lazy" />
-                <img class="proj-gif" src="" data-gif="YOUR_WHEEL4U_GIF.gif" alt="Wheel4u demo" />
-                <span class="bento-num-badge">03 — React SPA</span>
-                <span class="bento-hover-hint">Hover to preview</span>
-              </div>
-              <div class="bento-body">
-                <div class="bento-name">Wheel4u — Car Marketplace</div>
-                <div class="bento-desc">
-                  Single-page car buying and selling platform. Clean listings, detailed car views,
-                  category filters, and a fully responsive layout. Component-driven React
-                  architecture deployed on Vercel.
-                </div>
-                <div class="bento-tags">
-                  <span class="p-tag">React</span>
-                  <span class="p-tag">Bootstrap</span>
-                  <span class="p-tag">JavaScript</span>
-                  <span class="p-tag">Vercel</span>
-                </div>
-                <div class="bento-links">
-                  <a href="https://carselling-wheel4u-webapplication-r.vercel.app/" target="_blank" rel="noopener" class="p-link p-link-live">
-                    <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8">
-                      <circle cx="6" cy="6" r="4.5"/><path d="M6 1.5c-1.5 1.5-1.5 7.5 0 9M6 1.5c1.5 1.5 1.5 7.5 0 9M1.5 6h9"/>
-                    </svg>Live Site
-                  </a>
-                  <a href="https://github.com/Shaeel-0005/Carselling--Wheel4u--Webapplication--reactjs-bootstrap" target="_blank" rel="noopener" class="p-link p-link-gh">
-                    <svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 .5A5.5 5.5 0 0 0 .5 6c0 2.43 1.57 4.49 3.75 5.22.27.05.37-.12.37-.26v-.93C3.03 10.3 2.7 9.2 2.7 9.2c-.26-.65-.63-.82-.63-.82-.51-.35.04-.34.04-.34.57.04.86.58.86.58.5.86 1.31.61 1.63.47.05-.36.2-.61.36-.75-1.24-.14-2.55-.62-2.55-2.77 0-.61.22-1.11.58-1.5-.06-.14-.25-.71.05-1.48 0 0 .47-.15 1.54.57A5.38 5.38 0 0 1 6 2.8c.48 0 .96.06 1.41.19 1.07-.72 1.54-.57 1.54-.57.3.77.11 1.34.05 1.48.36.39.58.89.58 1.5 0 2.15-1.31 2.63-2.56 2.77.2.17.38.51.38 1.03v1.53c0 .14.1.31.38.26A5.5 5.5 0 0 0 11.5 6 5.5 5.5 0 0 0 6 .5Z"/></svg>GitHub
-                  </a>
-                </div>
-              </div>
-            </div>
-
-          </div><!-- /bento-grid -->
-
-          <!-- CLIENT WORK -->
-          <div class="client-strip-header r">
-            <div>
-              <div class="label" style="margin-bottom:8px;color:rgba(244,240,232,0.38)">Client Work</div>
-              <div class="client-strip-title">Real businesses.<br /><em>Real results.</em></div>
-            </div>
-            <div class="client-strip-meta">
-              <span class="client-scroll-hint">
-                <svg viewBox="0 0 24 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="1" y="1" width="22" height="12" rx="6" stroke="currentColor" stroke-width="1.5"/>
-                  <rect x="4" y="4" width="6" height="6" rx="3" fill="currentColor"/>
+            <div class="feat-links">
+              <a
+                href="https://aquaflow-water-delivery.onrender.com/login"
+                target="_blank"
+                rel="noopener"
+                class="p-link p-link-live"
+                ><svg
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <circle cx="6" cy="6" r="4.5" />
+                  <path
+                    d="M6 1.5c-1.5 1.5-1.5 7.5 0 9M6 1.5c1.5 1.5 1.5 7.5 0 9M1.5 6h9"
+                  />
                 </svg>
-                Drag to explore
-              </span>
-              <div class="client-scroll-nav">
-                <button class="client-scroll-btn" id="clientPrev" aria-label="Previous">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
-                </button>
-                <button class="client-scroll-btn" id="clientNext" aria-label="Next">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 6 15 12 9 18"/></svg>
-                </button>
-              </div>
-              <span class="client-strip-note">5 live sites</span>
+                Live Site</a
+              >
+              <a
+                href="https://github.com/Shaeel-0005/Drinking-Water-Delivery-System"
+                target="_blank"
+                rel="noopener"
+                class="p-link p-link-gh"
+                ><svg viewBox="0 0 12 12" fill="currentColor">
+                  <path
+                    d="M6 .5A5.5 5.5 0 0 0 .5 6c0 2.43 1.57 4.49 3.75 5.22.27.05.37-.12.37-.26v-.93C3.03 10.3 2.7 9.2 2.7 9.2c-.26-.65-.63-.82-.63-.82-.51-.35.04-.34.04-.34.57.04.86.58.86.58.5.86 1.31.61 1.63.47.05-.36.2-.61.36-.75-1.24-.14-2.55-.62-2.55-2.77 0-.61.22-1.11.58-1.5-.06-.14-.25-.71.05-1.48 0 0 .47-.15 1.54.57A5.38 5.38 0 0 1 6 2.8c.48 0 .96.06 1.41.19 1.07-.72 1.54-.57 1.54-.57.3.77.11 1.34.05 1.48.36.39.58.89.58 1.5 0 2.15-1.31 2.63-2.56 2.77.2.17.38.51.38 1.03v1.53c0 .14.1.31.38.26A5.5 5.5 0 0 0 11.5 6 5.5 5.5 0 0 0 6 .5Z"
+                  />
+                </svg>
+                GitHub</a
+              >
             </div>
           </div>
 
-          <!-- Scroll track -->
-          <div class="client-scroll-wrap r">
-            <div class="client-scroll-track" id="clientTrack">
-
-              <!-- Slide 01: Kwik Flights -->
-              <div class="client-slide">
-                <div class="client-slide-thumb">
-                  <img
-                    src="/assets/clients/kwik.png"
-                    alt="Kwik Flights" loading="lazy" />
-                  <span class="client-slide-badge">Travel · UK</span>
-                  <span class="client-slide-idx">01 / 05</span>
-                </div>
-                <div class="client-slide-footer">
-                  <div class="client-slide-info">
-                    <div class="client-slide-name">Kwik Flights</div>
-                    <div class="client-slide-desc">Flight comparison &amp; booking platform. Hundreds of airlines, clean UX, SEO-optimised pages.</div>
-                    <div class="client-slide-stack">
-                      <span class="client-tag">WordPress</span>
-                      <span class="client-tag">SEO</span>
-                    </div>
-                  </div>
-                  <a href="https://kwikflights.co.uk/" target="_blank" rel="noopener" class="client-slide-visit">
-                    <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 10L10 2M5 2h5v5"/></svg>
-                    Visit
-                  </a>
-                </div>
-              </div>
-
-              <!-- Slide 02: Shop For Cars -->
-              <div class="client-slide">
-                <div class="client-slide-thumb">
-                  <img
-                    src="/assets/clients/shop4cars.png"
-                    alt="Shop For Cars" loading="lazy" />
-                  <span class="client-slide-badge">Automotive · UK</span>
-                  <span class="client-slide-idx">02 / 05</span>
-                </div>
-                <div class="client-slide-footer">
-                  <div class="client-slide-info">
-                    <div class="client-slide-name">Shop For Cars</div>
-                    <div class="client-slide-desc">Car dealership e-commerce site with listings, filters, and enquiry flows built for conversions.</div>
-                    <div class="client-slide-stack">
-                      <span class="client-tag">WordPress</span>
-                      <span class="client-tag">WooCommerce</span>
-                    </div>
-                  </div>
-                  <a href="https://www.shopforcars.co.uk/" target="_blank" rel="noopener" class="client-slide-visit">
-                    <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 10L10 2M5 2h5v5"/></svg>
-                    Visit
-                  </a>
-                </div>
-              </div>
-
-              <!-- Slide 03: Armitage Estates -->
-              <div class="client-slide">
-                <div class="client-slide-thumb">
-                  <img
-                    src="/assets/clients/Amritage.png"
-                    alt="Armitage Estates" loading="lazy" />
-                  <span class="client-slide-badge">Real Estate · UK</span>
-                  <span class="client-slide-idx">03 / 05</span>
-                </div>
-                <div class="client-slide-footer">
-                  <div class="client-slide-info">
-                    <div class="client-slide-name">Armitage Estates</div>
-                    <div class="client-slide-desc">Property management with guaranteed rent services, rent calculator, and lead generation flows.</div>
-                    <div class="client-slide-stack">
-                      <span class="client-tag">WordPress</span>
-                      <span class="client-tag">Lead Gen</span>
-                    </div>
-                  </div>
-                  <a href="https://armitageestates.co.uk/" target="_blank" rel="noopener" class="client-slide-visit">
-                    <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 10L10 2M5 2h5v5"/></svg>
-                    Visit
-                  </a>
-                </div>
-              </div>
-
-              <!-- Slide 04: Naya Self Care -->
-              <div class="client-slide">
-                <div class="client-slide-thumb">
-                  <img
-                    src="/assets/clients/nayaself.png"
-                    alt="Naya Self Care" loading="lazy" />
-                  <span class="client-slide-badge">Wellness · E-commerce</span>
-                  <span class="client-slide-idx">04 / 05</span>
-                </div>
-                <div class="client-slide-footer">
-                  <div class="client-slide-info">
-                    <div class="client-slide-name">Naya Self Care</div>
-                    <div class="client-slide-desc">Health &amp; wellness product store with 4k+ customers, full shop, testimonials, and conversion pages.</div>
-                    <div class="client-slide-stack">
-                      <span class="client-tag">WordPress</span>
-                      <span class="client-tag">WooCommerce</span>
-                    </div>
-                  </div>
-                  <a href="https://www.nayaselfcare.com/" target="_blank" rel="noopener" class="client-slide-visit">
-                    <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 10L10 2M5 2h5v5"/></svg>
-                    Visit
-                  </a>
-                </div>
-              </div>
-
-              <!-- Slide 05: iCare Software -->
-              <div class="client-slide">
-                <div class="client-slide-thumb">
-                  <img
-                    src="/assets/clients/ICare.png"
-                    alt="iCare Software" loading="lazy" />
-                  <span class="client-slide-badge">Software Agency · UK</span>
-                  <span class="client-slide-idx">05 / 05</span>
-                </div>
-                <div class="client-slide-footer">
-                  <div class="client-slide-info">
-                    <div class="client-slide-name">iCare Software</div>
-                    <div class="client-slide-desc">Custom software agency — CRM dev, portals, enterprise integration, and consulting services.</div>
-                    <div class="client-slide-stack">
-                      <span class="client-tag">WordPress</span>
-                      <span class="client-tag">Custom Dev</span>
-                    </div>
-                  </div>
-                  <a href="https://icaresoftware.co.uk/" target="_blank" rel="noopener" class="client-slide-visit">
-                    <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 10L10 2M5 2h5v5"/></svg>
-                    Visit
-                  </a>
-                </div>
-              </div>
-
-            </div><!-- /client-scroll-track -->
-          </div><!-- /client-scroll-wrap -->
-
-          <!-- Progress bar -->
-          <div class="client-scroll-progress">
-            <div class="client-scroll-bar" id="clientBar"></div>
+          <div class="feat-card r">
+            <div class="feat-num">02 — SaaS / In Progress</div>
+            <div class="feat-name">LeadFlow — Micro-CRM SaaS</div>
+            <div class="feat-desc">
+              CRM for freelancers and agencies. Lead tracking with status
+              pipelines, follow-up reminders, activity logs, and a live
+              analytics dashboard. API-first Django backend, React frontend,
+              async Celery workers, deployed on cloud.
+            </div>
+            <div class="feat-tags">
+              <span class="p-tag">React</span
+              ><span class="p-tag">Django REST</span
+              ><span class="p-tag">PostgreSQL</span
+              ><span class="p-tag">Redis</span><span class="p-tag">Celery</span
+              ><span class="p-tag">Docker</span>
+            </div>
+            <div class="feat-links">
+               <a
+                href="https://micro-crm-ten.vercel.app/"
+                target="_blank"
+                rel="noopener"
+                class="p-link p-link-live"
+                ><svg
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <circle cx="6" cy="6" r="4.5" />
+                  <path
+                    d="M6 1.5c-1.5 1.5-1.5 7.5 0 9M6 1.5c1.5 1.5 1.5 7.5 0 9M1.5 6h9"
+                  />
+                </svg>
+                Live Site</a
+              >
+              <a
+                href="https://github.com/Shaeel-0005/Micro-CRM"
+                target="_blank"
+                rel="noopener"
+                class="p-link p-link-gh"
+                ><svg viewBox="0 0 12 12" fill="currentColor">
+                  <path
+                    d="M6 .5A5.5 5.5 0 0 0 .5 6c0 2.43 1.57 4.49 3.75 5.22.27.05.37-.12.37-.26v-.93C3.03 10.3 2.7 9.2 2.7 9.2c-.26-.65-.63-.82-.63-.82-.51-.35.04-.34.04-.34.57.04.86.58.86.58.5.86 1.31.61 1.63.47.05-.36.2-.61.36-.75-1.24-.14-2.55-.62-2.55-2.77 0-.61.22-1.11.58-1.5-.06-.14-.25-.71.05-1.48 0 0 .47-.15 1.54.57A5.38 5.38 0 0 1 6 2.8c.48 0 .96.06 1.41.19 1.07-.72 1.54-.57 1.54-.57.3.77.11 1.34.05 1.48.36.39.58.89.58 1.5 0 2.15-1.31 2.63-2.56 2.77.2.17.38.51.38 1.03v1.53c0 .14.1.31.38.26A5.5 5.5 0 0 0 11.5 6 5.5 5.5 0 0 0 6 .5Z"
+                  />
+                </svg>
+                GitHub</a
+              >
+            </div>
           </div>
 
-        </div><!-- /projects-inner -->
-      </section>
+          <div class="feat-card r">
+            <div class="feat-num">03 — React SPA</div>
+            <div class="feat-name">Wheel4u — Car Marketplace</div>
+            <div class="feat-desc">
+              Single-page car buying and selling platform. Clean listings,
+              detailed car views, category filters, and a fully responsive
+              layout. Component-driven React architecture deployed on Vercel.
+            </div>
+            <div class="feat-tags">
+              <span class="p-tag">React</span
+              ><span class="p-tag">Bootstrap</span
+              ><span class="p-tag">JavaScript</span
+              ><span class="p-tag">Vercel</span>
+            </div>
+            <div class="feat-links">
+              <a
+                href="https://carselling-wheel4u-webapplication-r.vercel.app/"
+                target="_blank"
+                rel="noopener"
+                class="p-link p-link-live"
+                ><svg
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <circle cx="6" cy="6" r="4.5" />
+                  <path
+                    d="M6 1.5c-1.5 1.5-1.5 7.5 0 9M6 1.5c1.5 1.5 1.5 7.5 0 9M1.5 6h9"
+                  />
+                </svg>
+                Live Site</a
+              >
+              <a
+                href="https://github.com/Shaeel-0005/Carselling--Wheel4u--Webapplication--reactjs-bootstrap"
+                target="_blank"
+                rel="noopener"
+                class="p-link p-link-gh"
+                ><svg viewBox="0 0 12 12" fill="currentColor">
+                  <path
+                    d="M6 .5A5.5 5.5 0 0 0 .5 6c0 2.43 1.57 4.49 3.75 5.22.27.05.37-.12.37-.26v-.93C3.03 10.3 2.7 9.2 2.7 9.2c-.26-.65-.63-.82-.63-.82-.51-.35.04-.34.04-.34.57.04.86.58.86.58.5.86 1.31.61 1.63.47.05-.36.2-.61.36-.75-1.24-.14-2.55-.62-2.55-2.77 0-.61.22-1.11.58-1.5-.06-.14-.25-.71.05-1.48 0 0 .47-.15 1.54.57A5.38 5.38 0 0 1 6 2.8c.48 0 .96.06 1.41.19 1.07-.72 1.54-.57 1.54-.57.3.77.11 1.34.05 1.48.36.39.58.89.58 1.5 0 2.15-1.31 2.63-2.56 2.77.2.17.38.51.38 1.03v1.53c0 .14.1.31.38.26A5.5 5.5 0 0 0 11.5 6 5.5 5.5 0 0 0 6 .5Z"
+                  />
+                </svg>
+                GitHub</a
+              >
+            </div>
+          </div>
+        </div>
 
-      <!-- ─── FRONTEND BUILDS ─── -->
-      <section class="fp-sec" id="frontend-builds">
-        <span class="fp-eyebrow r">Frontend Builds</span>
-        <h2 class="fp-big-title r">
-          Curious What Else<br /><em>I've Built?</em>
-        </h2>
-        <p class="fp-big-sub r">
-          Focused UI experiments — each one deployed, each one solving something real.
-        </p>
-        <div class="fp-cta-row r">
-          <a href="https://github.com/Shaeel-0005/frontend-projects-practice" target="_blank" rel="noopener" class="fp-cta-btn">
-            See all Projects
-            <span class="fp-cta-orb">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </span>
+        <!-- TIER 2: Client Work -->
+        <div class="client-strip-header r">
+          <div>
+            <div class="label" style="margin-bottom: 8px">Client Work</div>
+            <div class="client-strip-title">
+              Real businesses.<br /><em>Real results.</em>
+            </div>
+          </div>
+          <span class="client-strip-note">5 live client sites</span>
+        </div>
+
+        <div class="client-grid">
+          <a
+            href="https://kwikflights.co.uk/"
+            target="_blank"
+            rel="noopener"
+            class="client-card r"
+          >
+            <span class="client-arrow">↗</span>
+            <div class="client-industry">Travel · UK</div>
+            <div class="client-name">Kwik Flights</div>
+            <div class="client-desc">
+              Flight comparison &amp; booking platform. Hundreds of airlines,
+              clean booking UX, SEO-optimised pages.
+            </div>
+            <div class="client-stack">
+              <span class="client-tag">WordPress</span
+              ><span class="client-tag">SEO</span>
+            </div>
+          </a>
+
+          <a
+            href="https://www.shopforcars.co.uk/"
+            target="_blank"
+            rel="noopener"
+            class="client-card r"
+          >
+            <span class="client-arrow">↗</span>
+            <div class="client-industry">Automotive · UK</div>
+            <div class="client-name">Shop For Cars</div>
+            <div class="client-desc">
+              Car dealership e-commerce site with listings, filters, and enquiry
+              flows built for conversions.
+            </div>
+            <div class="client-stack">
+              <span class="client-tag">WordPress</span
+              ><span class="client-tag">WooCommerce</span>
+            </div>
+          </a>
+
+          <a
+            href="https://armitageestates.co.uk/"
+            target="_blank"
+            rel="noopener"
+            class="client-card r"
+          >
+            <span class="client-arrow">↗</span>
+            <div class="client-industry">Real Estate · UK</div>
+            <div class="client-name">Armitage Estates</div>
+            <div class="client-desc">
+              Property management site with guaranteed rent services, a rent
+              calculator, and lead generation.
+            </div>
+            <div class="client-stack">
+              <span class="client-tag">WordPress</span
+              ><span class="client-tag">Lead Gen</span>
+            </div>
+          </a>
+
+          <a
+            href="https://www.nayaselfcare.com/"
+            target="_blank"
+            rel="noopener"
+            class="client-card r"
+          >
+            <span class="client-arrow">↗</span>
+            <div class="client-industry">Wellness · E-commerce</div>
+            <div class="client-name">Naya Self Care</div>
+            <div class="client-desc">
+              Health &amp; wellness product store with 4k+ customers, full shop,
+              testimonials and conversion pages.
+            </div>
+            <div class="client-stack">
+              <span class="client-tag">WordPress</span
+              ><span class="client-tag">WooCommerce</span>
+            </div>
+          </a>
+
+          <a
+            href="https://icaresoftware.co.uk/"
+            target="_blank"
+            rel="noopener"
+            class="client-card r"
+          >
+            <span class="client-arrow">↗</span>
+            <div class="client-industry">Software Agency · UK</div>
+            <div class="client-name">iCare Software</div>
+            <div class="client-desc">
+              Custom software agency site — CRM dev, portals, enterprise
+              integration, consulting services.
+            </div>
+            <div class="client-stack">
+              <span class="client-tag">WordPress</span
+              ><span class="client-tag">Custom Dev</span>
+            </div>
           </a>
         </div>
 
-        <!-- Fan gallery -->
-        <div class="fp-fan r">
-
-          <!-- Left edge (partially visible, heavily tilted) -->
-          <div class="fp-fan-item edge left-edge">
-            <div class="fp-fan-thumb">
-              <img src="https://images.unsplash.com/photo-1555421689-491a97ff2040?w=500&q=80&fit=crop&crop=top" alt="" loading="lazy" />
-            </div>
-            <div class="fp-fan-label">
-              <div class="fp-fan-num">#05</div>
-              <div class="fp-fan-name">More →</div>
+        <!-- TIER 3: Frontend Practice -->
+        <div class="fp-header r">
+          <div>
+            <div class="label" style="margin-bottom: 8px">Frontend Builds</div>
+            <div class="fp-title">UI experiments. <em>All live.</em></div>
+            <div class="fp-sub">
+              Focused frontend builds — each one deployed, each one solving
+              something real.
             </div>
           </div>
+          <a
+            href="https://github.com/Shaeel-0005/frontend-projects-practice"
+            target="_blank"
+            rel="noopener"
+            class="fp-all-link"
+          >
+            <svg viewBox="0 0 12 12" fill="currentColor">
+              <path
+                d="M6 .5A5.5 5.5 0 0 0 .5 6c0 2.43 1.57 4.49 3.75 5.22.27.05.37-.12.37-.26v-.93C3.03 10.3 2.7 9.2 2.7 9.2c-.26-.65-.63-.82-.63-.82-.51-.35.04-.34.04-.34.57.04.86.58.86.58.5.86 1.31.61 1.63.47.05-.36.2-.61.36-.75-1.24-.14-2.55-.62-2.55-2.77 0-.61.22-1.11.58-1.5-.06-.14-.25-.71.05-1.48 0 0 .47-.15 1.54.57A5.38 5.38 0 0 1 6 2.8c.48 0 .96.06 1.41.19 1.07-.72 1.54-.57 1.54-.57.3.77.11 1.34.05 1.48.36.39.58.89.58 1.5 0 2.15-1.31 2.63-2.56 2.77.2.17.38.51.38 1.03v1.53c0 .14.1.31.38.26A5.5 5.5 0 0 0 11.5 6 5.5 5.5 0 0 0 6 .5Z"
+              />
+            </svg>
+            All on GitHub →
+          </a>
+        </div>
 
-          <!-- Left far -->
-          <div class="fp-fan-item far left-far">
-            <a href="https://waterbnb-virid.vercel.app/" target="_blank" rel="noopener" style="display:contents;text-decoration:none">
-            <div class="fp-fan-thumb">
-              <img src="/assets/frontend/waterbnb.png" alt="WaterBnB" loading="lazy" />
+        <div class="fp-grid">
+          <a
+            href="https://ticket-generator-shaeel.vercel.app/"
+            target="_blank"
+            rel="noopener"
+            class="fp-card r"
+          >
+            <div class="fp-icon">🎟️</div>
+            <div class="fp-card-name">Ticket Generator</div>
+            <div class="fp-card-desc">
+              Generate styled event tickets with custom details — clean
+              form-to-output flow.
             </div>
-            <div class="fp-fan-label">
-              <div class="fp-fan-num">#04</div>
-              <div class="fp-fan-name">WaterBnB</div>
+            <div class="fp-card-bottom">
+              <div class="fp-tags-row">
+                <span class="p-tag">React</span
+                ><span class="p-tag">Vercel</span>
+              </div>
+              <span class="fp-arrow">↗</span>
             </div>
-            </a>
-          </div>
-
-          <!-- Left near -->
-          <div class="fp-fan-item near left-near">
-            <a href="https://sandsyntax-front.vercel.app/" target="_blank" rel="noopener" style="display:contents;text-decoration:none">
-            <div class="fp-fan-thumb">
-              <img src="/assets/frontend/sandsyntax.png" alt="SandSyntax" loading="lazy" />
+          </a>
+          <a
+            href="https://nex-games.vercel.app/"
+            target="_blank"
+            rel="noopener"
+            class="fp-card r"
+          >
+            <div class="fp-icon">🎮</div>
+            <div class="fp-card-name">Nex Games</div>
+            <div class="fp-card-desc">
+              Gaming platform UI with listings, categories, and a polished
+              dark-themed interface.
             </div>
-            <div class="fp-fan-label">
-              <div class="fp-fan-num">#03</div>
-              <div class="fp-fan-name">SandSyntax</div>
+            <div class="fp-card-bottom">
+              <div class="fp-tags-row">
+                <span class="p-tag">React</span
+                ><span class="p-tag">Vercel</span>
+              </div>
+              <span class="fp-arrow">↗</span>
             </div>
-            </a>
-          </div>
-
-          <!-- Centre (tallest, straight-on) -->
-          <div class="fp-fan-item center">
-            <a href="https://ticket-generator-shaeel.vercel.app/" target="_blank" rel="noopener" style="display:contents;text-decoration:none">
-            <div class="fp-fan-thumb">
-              <img src="/assets/frontend/ticketgenerator.png" alt="Ticket Generator" loading="lazy" />
+          </a>
+          <a
+            href="https://sandsyntax-front.vercel.app/"
+            target="_blank"
+            rel="noopener"
+            class="fp-card r"
+          >
+            <div class="fp-icon">🧩</div>
+            <div class="fp-card-name">SandSyntax</div>
+            <div class="fp-card-desc">
+              Tech brand landing page — sharp layout, strong typographic
+              hierarchy, clean sections.
             </div>
-            <div class="fp-fan-label">
-              <div class="fp-fan-num">#01</div>
-              <div class="fp-fan-name">Ticket Generator</div>
+            <div class="fp-card-bottom">
+              <div class="fp-tags-row">
+                <span class="p-tag">React</span
+                ><span class="p-tag">Vercel</span>
+              </div>
+              <span class="fp-arrow">↗</span>
             </div>
-            </a>
-          </div>
-
-          <!-- Right near -->
-          <div class="fp-fan-item near right-near">
-            <a href="https://banking-app-hoobank-react-tailwind.vercel.app/" target="_blank" rel="noopener" style="display:contents;text-decoration:none">
-            <div class="fp-fan-thumb">
-              <img src="/assets/frontend/hoobank.png" alt="Nex Games" loading="lazy" />
+          </a>
+          <a
+            href="https://waterbnb-virid.vercel.app/"
+            target="_blank"
+            rel="noopener"
+            class="fp-card r"
+          >
+            <div class="fp-icon">🏡</div>
+            <div class="fp-card-name">WaterBnB</div>
+            <div class="fp-card-desc">
+              Airbnb-inspired rental listing UI — property cards, filters,
+              booking-style layout.
             </div>
-            <div class="fp-fan-label">
-              <div class="fp-fan-num">#02</div>
-              <div class="fp-fan-name">Hoo Bank</div>
+            <div class="fp-card-bottom">
+              <div class="fp-tags-row">
+                <span class="p-tag">React</span
+                ><span class="p-tag">Tailwind</span>
+              </div>
+              <span class="fp-arrow">↗</span>
             </div>
-            </a>
-          </div>
-
-          <!-- Right far -->
-          <div class="fp-fan-item far right-far">
-            <a href="https://shaeel.com" target="_blank" rel="noopener" style="display:contents;text-decoration:none">
-            <div class="fp-fan-thumb">
-              <img src="/assets/frontend/shaeelportfolio.png" alt="Frontend" loading="lazy" />
+          </a>
+          <a
+            href="https://noice-clothing-store-react-tailwind.vercel.app/"
+            target="_blank"
+            rel="noopener"
+            class="fp-card r"
+          >
+            <div class="fp-icon">👕</div>
+            <div class="fp-card-name">Noice Clothing</div>
+            <div class="fp-card-desc">
+              E-commerce storefront — product grid, cart flow, and mobile-first
+              responsive layout.
             </div>
-            <div class="fp-fan-label">
-              <div class="fp-fan-num">#05</div>
-              <div class="fp-fan-name">Shaeel</div>
+            <div class="fp-card-bottom">
+              <div class="fp-tags-row">
+                <span class="p-tag">React</span
+                ><span class="p-tag">Tailwind</span>
+              </div>
+              <span class="fp-arrow">↗</span>
             </div>
-            </a>
-          </div>
-
-          <!-- Right edge -->
-          <div class="fp-fan-item edge right-edge">
-            <div class="fp-fan-thumb">
-              <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&q=80&fit=crop&crop=top" alt="" loading="lazy" />
+          </a>
+          <a
+            href="https://banking-app-hoobank-react-tailwind.vercel.app/"
+            target="_blank"
+            rel="noopener"
+            class="fp-card r"
+          >
+            <div class="fp-icon">🏦</div>
+            <div class="fp-card-name">Hoobank</div>
+            <div class="fp-card-desc">
+              Banking app landing page — glassmorphism UI, gradient accents,
+              pixel-perfect sections.
             </div>
-            <div class="fp-fan-label">
-              <div class="fp-fan-num">#06</div>
-              <div class="fp-fan-name">More</div>
+            <div class="fp-card-bottom">
+              <div class="fp-tags-row">
+                <span class="p-tag">React</span
+                ><span class="p-tag">Tailwind</span>
+              </div>
+              <span class="fp-arrow">↗</span>
             </div>
-          </div>
-
-        </div><!-- /fp-fan -->
+          </a>
+        </div>
       </section>
-
-            <!-- ─── SKILLS ─── -->
+      <!-- ─── SKILLS ─── -->
       <section class="skills-sec">
         <div class="skills-inner">
           <div class="label r">Stack</div>
@@ -2812,57 +2431,6 @@
         if (e.key === "Escape" && document.body.classList.contains("nav-open"))
           closeMenu();
       });
-
-      /* ─── GIF LAZY LOAD ON HOVER ─── */
-      document.querySelectorAll(".bento-card").forEach((card) => {
-        const gif = card.querySelector(".proj-gif");
-        if (!gif) return;
-        let loaded = false;
-        card.addEventListener("mouseenter", () => {
-          if (!loaded && gif.dataset.gif) {
-            gif.src = gif.dataset.gif;
-            loaded = true;
-          }
-        });
-      });
-
-      /* ─── CLIENT SCROLL ─── */
-      (function () {
-        const track = document.getElementById("clientTrack");
-        const bar = document.getElementById("clientBar");
-        const prev = document.getElementById("clientPrev");
-        const next = document.getElementById("clientNext");
-        if (!track) return;
-
-        // Progress bar
-        function updateBar() {
-          const max = track.scrollWidth - track.clientWidth;
-          const pct = max > 0 ? (track.scrollLeft / max) * 80 + 20 : 20;
-          bar.style.width = pct + "%";
-        }
-        track.addEventListener("scroll", updateBar, { passive: true });
-        updateBar();
-
-        // Arrow buttons
-        const slideW = () => (track.querySelector(".client-slide")?.offsetWidth || 360) + 20;
-        prev.addEventListener("click", () => track.scrollBy({ left: -slideW(), behavior: "smooth" }));
-        next.addEventListener("click", () => track.scrollBy({ left: slideW(), behavior: "smooth" }));
-
-        // Drag-to-scroll
-        let isDragging = false, startX = 0, startScroll = 0;
-        track.addEventListener("mousedown", (e) => {
-          isDragging = true;
-          startX = e.pageX - track.offsetLeft;
-          startScroll = track.scrollLeft;
-        });
-        window.addEventListener("mouseup", () => { isDragging = false; });
-        track.addEventListener("mousemove", (e) => {
-          if (!isDragging) return;
-          e.preventDefault();
-          const x = e.pageX - track.offsetLeft;
-          track.scrollLeft = startScroll - (x - startX);
-        });
-      })();
 
       /* ─── HIDE FLOAT BUTTON NEAR CONTACT ─── */
       const floatBtn = document.getElementById("floatHire");

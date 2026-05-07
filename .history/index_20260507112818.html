@@ -573,7 +573,7 @@
 
       /* ─── SECTION BASE ─── */
       .sec {
-        padding: 140px 64px;
+        padding: 120px 64px;
         max-width: 1100px;
         margin: 0 auto;
         width: 100%;
@@ -1273,221 +1273,114 @@
         .client-scroll-track { padding: 4px 16px 24px; }
       }
 
-      /* ══ FRONTEND BUILDS — LIGHT SECTION ══ */
-      .fp-sec {
-        background: #F4F0E8;
-        padding: 140px 64px 160px;
-        text-align: center;
-        position: relative;
-        overflow: hidden;
+      /* ══ FRONTEND MINI-GRID ══ */
+      .fp-header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 16px;
+        margin-top: 80px;
+        padding-top: 64px;
+        border-top: 1px solid rgba(244, 240, 232, 0.07);
+        flex-wrap: wrap;
       }
-      /* subtle dot-grid texture */
-      .fp-sec::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background-image: radial-gradient(circle, rgba(17,16,14,0.055) 1px, transparent 1px);
-        background-size: 28px 28px;
-        pointer-events: none;
-      }
-
-      .fp-eyebrow {
-        font-size: 0.72rem;
-        font-weight: 600;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: var(--orange);
-        margin-bottom: 20px;
-        display: block;
-      }
-      .fp-big-title {
+      .fp-title {
         font-family: "Syne", sans-serif;
-        font-size: clamp(2rem, 2rem + 2.2vw, 3.8rem);
-        font-weight: 800;
-        line-height: 1.1;
-        letter-spacing: -0.025em;
-        color: var(--ink);
-        margin-bottom: 20px;
+        font-size: clamp(1.4rem, 1.4rem + 0.5vw, 1.9rem);
+        font-weight: 700;
+        letter-spacing: -0.015em;
+        color: #f4f0e8;
       }
-      .fp-big-title em {
+      .fp-title em {
         font-family: "Lora", serif;
         font-style: italic;
         font-weight: 400;
         color: var(--orange);
       }
-      .fp-big-sub {
-        font-size: 0.95rem;
-        line-height: 1.75;
-        color: #7a7268;
-        max-width: 460px;
-        margin: 0 auto 44px;
+      .fp-sub {
+        font-size: 0.8rem;
+        color: rgba(244, 240, 232, 0.35);
+        margin-top: 6px;
         font-weight: 300;
       }
-      .fp-cta-row {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 14px;
-        margin-bottom: 80px;
-      }
-      .fp-cta-btn {
+      .fp-all-link {
         display: inline-flex;
         align-items: center;
-        gap: 0;
-        font-size: 0.82rem;
+        gap: 7px;
+        font-size: 0.72rem;
         font-weight: 500;
-        letter-spacing: 0.02em;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
         text-decoration: none;
-        color: var(--ink);
-        background: #fff;
-        border: 1px solid rgba(17,16,14,0.14);
-        padding: 11px 22px;
+        color: rgba(244, 240, 232, 0.4);
+        border: 1px solid rgba(244, 240, 232, 0.12);
+        padding: 8px 16px;
         border-radius: 999px;
-        transition: border-color 0.2s, box-shadow 0.2s;
-        box-shadow: 0 2px 12px rgba(17,16,14,0.06);
-      }
-      .fp-cta-btn:hover {
-        border-color: rgba(17,16,14,0.3);
-        box-shadow: 0 4px 20px rgba(17,16,14,0.1);
-      }
-      .fp-cta-orb {
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        background: var(--orange);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #fff;
-        margin-left: 10px;
+        transition: all 0.2s;
+        white-space: nowrap;
         flex-shrink: 0;
-        transition: transform 0.2s, background 0.2s;
-        box-shadow: 0 4px 14px rgba(255,107,53,0.4);
       }
-      .fp-cta-btn:hover .fp-cta-orb {
-        transform: translateX(3px);
-        background: var(--red);
+      .fp-all-link:hover {
+        border-color: var(--orange);
+        color: var(--orange);
+        background: rgba(255, 107, 53, 0.07);
       }
-      .fp-cta-orb svg { width: 14px; height: 14px; }
+      .fp-all-link svg { fill: currentColor; }
 
-      /* ── Fan gallery ── */
-      .fp-fan {
-        position: relative;
-        width: 100%;
-        /* reserve height so labels don't clip */
-        min-height: 420px;
-        display: flex;
-        align-items: flex-end;
-        justify-content: center;
-        gap: 0;
-        perspective: 1400px;
-        margin-bottom: 0;
+      .fp-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+        margin-top: 28px;
       }
-
-      .fp-fan-item {
-        position: relative;
-        flex-shrink: 0;
+      .fp-card {
+        background: rgba(244, 240, 232, 0.03);
+        border: 1px solid rgba(244, 240, 232, 0.08);
+        border-radius: 16px;
+        padding: 22px 20px 18px;
+        text-decoration: none;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        gap: 0;
-        /* stagger z so neighbours slightly overlap */
-        transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
-                    z-index 0.1s,
-                    filter 0.4s ease;
-        cursor: pointer;
+        transition: border-color 0.2s, transform 0.2s, background 0.2s, box-shadow 0.2s;
+        position: relative;
       }
-
-      /* widths */
-      .fp-fan-item.center  { width: clamp(180px, 16vw, 230px); z-index: 5; }
-      .fp-fan-item.near    { width: clamp(150px, 13vw, 190px); z-index: 4; }
-      .fp-fan-item.far     { width: clamp(120px, 10vw, 155px); z-index: 3; }
-      .fp-fan-item.edge    { width: clamp(90px, 8vw, 120px);  z-index: 2; }
-
-      /* perspective tilts */
-      .fp-fan-item.left-near  { transform: perspective(1400px) rotateY(18deg) translateX(20px); }
-      .fp-fan-item.left-far   { transform: perspective(1400px) rotateY(32deg) translateX(36px) scaleY(0.94); filter: brightness(0.85); }
-      .fp-fan-item.left-edge  { transform: perspective(1400px) rotateY(46deg) translateX(50px) scaleY(0.88); filter: brightness(0.7); }
-      .fp-fan-item.right-near { transform: perspective(1400px) rotateY(-18deg) translateX(-20px); }
-      .fp-fan-item.right-far  { transform: perspective(1400px) rotateY(-32deg) translateX(-36px) scaleY(0.94); filter: brightness(0.85); }
-      .fp-fan-item.right-edge { transform: perspective(1400px) rotateY(-46deg) translateX(-50px) scaleY(0.88); filter: brightness(0.7); }
-
-      /* hover: straighten and lift */
-      .fp-fan-item:hover {
-        transform: perspective(1400px) rotateY(0deg) translateY(-16px) scale(1.03) !important;
-        filter: brightness(1) !important;
-        z-index: 10 !important;
+      .fp-card:hover {
+        border-color: rgba(255, 107, 53, 0.3);
+        background: rgba(255, 107, 53, 0.04);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 32px rgba(0, 0, 0, 0.3);
       }
-
-      .fp-fan-thumb {
-        width: 100%;
-        border-radius: 18px;
-        overflow: hidden;
-        aspect-ratio: 3 / 4;
-        box-shadow: 0 18px 60px rgba(17,16,14,0.16), 0 4px 12px rgba(17,16,14,0.08);
-        border: 1px solid rgba(17,16,14,0.06);
-        transition: box-shadow 0.4s ease;
-      }
-      .fp-fan-item:hover .fp-fan-thumb {
-        box-shadow: 0 32px 80px rgba(17,16,14,0.22), 0 0 0 2px rgba(255,107,53,0.3);
-      }
-      .fp-fan-thumb img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: top;
-        display: block;
-        transition: transform 0.5s ease;
-      }
-      .fp-fan-item:hover .fp-fan-thumb img {
-        transform: scale(1.06);
-      }
-
-      /* Label below card */
-      .fp-fan-label {
-        margin-top: 20px;
-        text-align: center;
-      }
-      .fp-fan-num {
-        font-size: 0.65rem;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        color: var(--orange);
-        margin-bottom: 4px;
-      }
-      .fp-fan-name {
+      .fp-card:hover .fp-card-name { color: var(--orange); }
+      .fp-card:hover .fp-arrow { opacity: 1; transform: translate(2px, -2px); }
+      .fp-icon { font-size: 1.3rem; margin-bottom: 10px; }
+      .fp-card-name {
         font-family: "Syne", sans-serif;
-        font-size: 0.82rem;
+        font-size: 0.88rem;
         font-weight: 700;
-        color: var(--ink);
-        white-space: nowrap;
+        color: rgba(244, 240, 232, 0.9);
+        margin-bottom: 6px;
+        transition: color 0.2s;
       }
-      /* hide labels on tilted edge cards */
-      .fp-fan-item.left-edge .fp-fan-label,
-      .fp-fan-item.right-edge .fp-fan-label { opacity: 0; }
-      .fp-fan-item.left-far .fp-fan-label,
-      .fp-fan-item.right-far .fp-fan-label { opacity: 0.4; }
-
-      /* the invisible anchor link wrapping each item */
-      .fp-fan-link {
-        display: contents;
-        text-decoration: none;
+      .fp-card-desc {
+        font-size: 0.75rem;
+        color: rgba(244, 240, 232, 0.38);
+        line-height: 1.6;
+        font-weight: 300;
+        flex: 1;
       }
-
-      @media (max-width: 900px) {
-        .fp-sec { padding: 100px 24px 120px; }
-        .fp-fan-item.left-edge, .fp-fan-item.right-edge { display: none; }
-        .fp-fan-item.center  { width: clamp(160px, 28vw, 200px); }
-        .fp-fan-item.near    { width: clamp(130px, 22vw, 165px); }
-        .fp-fan-item.far     { width: clamp(100px, 17vw, 135px); }
+      .fp-card-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 14px;
       }
-      @media (max-width: 600px) {
-        .fp-sec { padding: 80px 20px 100px; }
-        .fp-fan { min-height: 320px; }
-        .fp-fan-item.left-far, .fp-fan-item.right-far { display: none; }
-        .fp-fan-item.center { width: clamp(140px, 40vw, 180px); }
-        .fp-fan-item.near   { width: clamp(110px, 30vw, 145px); }
-        .fp-big-title { font-size: clamp(1.7rem, 7vw, 2.4rem); }
+      .fp-tags-row { display: flex; gap: 5px; flex-wrap: wrap; }
+      .fp-arrow {
+        font-size: 0.9rem;
+        color: var(--orange);
+        opacity: 0.25;
+        transition: all 0.2s;
+        flex-shrink: 0;
       }
 
       /* ══ BENTO RESPONSIVE ══ */
@@ -1496,6 +1389,7 @@
         .bento-card-narrow { grid-column: span 12; }
         .bento-card-full  { grid-column: span 12; flex-direction: column; }
         .bento-card-full .bento-media { width: 100%; height: 200px; }
+        .fp-grid { grid-template-columns: repeat(3, 1fr); }
       }
       @media (max-width: 768px) {
         .projects-sec { padding: 72px 20px; }
@@ -1503,9 +1397,13 @@
         .bento-card-wide, .bento-card-narrow, .bento-card-full { grid-column: span 1; }
         .bento-card-full { flex-direction: column; }
         .bento-card-full .bento-media { width: 100%; height: auto; aspect-ratio: 16/9; }
+        .fp-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .fp-header { flex-direction: column; gap: 10px; }
+        .fp-all-link { align-self: flex-start; }
       }
       @media (max-width: 480px) {
         .projects-sec { padding: 56px 16px; }
+        .fp-grid { grid-template-columns: 1fr; }
       }
 
       /* ─── SKILLS ─── */
@@ -2162,7 +2060,7 @@
             <div class="bento-card bento-card-wide r">
               <div class="bento-media">
                 <img class="proj-thumb"
-                  src="assets/projects/AquaFlow.png"
+                  src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80&fit=crop"
                   alt="AquaFlow preview" loading="lazy" />
                 <img class="proj-gif" src="" data-gif="YOUR_AQUAFLOW_GIF.gif" alt="AquaFlow demo" />
                 <span class="bento-num-badge">01 — Full Stack</span>
@@ -2199,9 +2097,9 @@
             <div class="bento-card bento-card-narrow rd">
               <div class="bento-media">
                 <img class="proj-thumb"
-                  src="assets/projects/crm.png"
+                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80&fit=crop"
                   alt="LeadFlow preview" loading="lazy" />
-                <img class="proj-gif" src="" data-gif="assets/projects/crm.gif" alt="LeadFlow demo" />
+                <img class="proj-gif" src="" data-gif="YOUR_LEADFLOW_GIF.gif" alt="LeadFlow demo" />
                 <span class="bento-num-badge">02 — SaaS</span>
                 <span class="bento-hover-hint">Hover to preview</span>
               </div>
@@ -2305,7 +2203,7 @@
               <div class="client-slide">
                 <div class="client-slide-thumb">
                   <img
-                    src="/assets/clients/kwik.png"
+                    src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=900&q=80&fit=crop"
                     alt="Kwik Flights" loading="lazy" />
                   <span class="client-slide-badge">Travel · UK</span>
                   <span class="client-slide-idx">01 / 05</span>
@@ -2330,7 +2228,7 @@
               <div class="client-slide">
                 <div class="client-slide-thumb">
                   <img
-                    src="/assets/clients/shop4cars.png"
+                    src="https://images.unsplash.com/photo-1567818735868-e71b99932e29?w=900&q=80&fit=crop"
                     alt="Shop For Cars" loading="lazy" />
                   <span class="client-slide-badge">Automotive · UK</span>
                   <span class="client-slide-idx">02 / 05</span>
@@ -2355,7 +2253,7 @@
               <div class="client-slide">
                 <div class="client-slide-thumb">
                   <img
-                    src="/assets/clients/Amritage.png"
+                    src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=900&q=80&fit=crop"
                     alt="Armitage Estates" loading="lazy" />
                   <span class="client-slide-badge">Real Estate · UK</span>
                   <span class="client-slide-idx">03 / 05</span>
@@ -2380,7 +2278,7 @@
               <div class="client-slide">
                 <div class="client-slide-thumb">
                   <img
-                    src="/assets/clients/nayaself.png"
+                    src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=900&q=80&fit=crop"
                     alt="Naya Self Care" loading="lazy" />
                   <span class="client-slide-badge">Wellness · E-commerce</span>
                   <span class="client-slide-idx">04 / 05</span>
@@ -2405,7 +2303,7 @@
               <div class="client-slide">
                 <div class="client-slide-thumb">
                   <img
-                    src="/assets/clients/ICare.png"
+                    src="https://images.unsplash.com/photo-1555421689-491a97ff2040?w=900&q=80&fit=crop"
                     alt="iCare Software" loading="lazy" />
                   <span class="client-slide-badge">Software Agency · UK</span>
                   <span class="client-slide-idx">05 / 05</span>
@@ -2434,118 +2332,59 @@
             <div class="client-scroll-bar" id="clientBar"></div>
           </div>
 
+          <!-- FRONTEND BUILDS -->
+          <div class="fp-header r">
+            <div>
+              <div class="label" style="margin-bottom:8px;color:rgba(244,240,232,0.38)">Frontend Builds</div>
+              <div class="fp-title">UI experiments. <em>All live.</em></div>
+              <div class="fp-sub">Focused frontend builds — each one deployed, each one solving something real.</div>
+            </div>
+            <a href="https://github.com/Shaeel-0005/frontend-projects-practice" target="_blank" rel="noopener" class="fp-all-link">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="currentColor"><path d="M6 .5A5.5 5.5 0 0 0 .5 6c0 2.43 1.57 4.49 3.75 5.22.27.05.37-.12.37-.26v-.93C3.03 10.3 2.7 9.2 2.7 9.2c-.26-.65-.63-.82-.63-.82-.51-.35.04-.34.04-.34.57.04.86.58.86.58.5.86 1.31.61 1.63.47.05-.36.2-.61.36-.75-1.24-.14-2.55-.62-2.55-2.77 0-.61.22-1.11.58-1.5-.06-.14-.25-.71.05-1.48 0 0 .47-.15 1.54.57A5.38 5.38 0 0 1 6 2.8c.48 0 .96.06 1.41.19 1.07-.72 1.54-.57 1.54-.57.3.77.11 1.34.05 1.48.36.39.58.89.58 1.5 0 2.15-1.31 2.63-2.56 2.77.2.17.38.51.38 1.03v1.53c0 .14.1.31.38.26A5.5 5.5 0 0 0 11.5 6 5.5 5.5 0 0 0 6 .5Z"/></svg>
+              All on GitHub →
+            </a>
+          </div>
+
+          <div class="fp-grid">
+            <a href="https://ticket-generator-shaeel.vercel.app/" target="_blank" rel="noopener" class="fp-card r">
+              <div class="fp-icon">&#127903;&#65039;</div>
+              <div class="fp-card-name">Ticket Generator</div>
+              <div class="fp-card-desc">Generate styled event tickets with custom details — clean form-to-output flow.</div>
+              <div class="fp-card-bottom">
+                <div class="fp-tags-row"><span class="p-tag">React</span><span class="p-tag">Vercel</span></div>
+                <span class="fp-arrow">&#8599;</span>
+              </div>
+            </a>
+            <a href="https://nex-games.vercel.app/" target="_blank" rel="noopener" class="fp-card r">
+              <div class="fp-icon">&#127918;</div>
+              <div class="fp-card-name">Nex Games</div>
+              <div class="fp-card-desc">Gaming platform UI with listings, categories, and a polished dark-themed interface.</div>
+              <div class="fp-card-bottom">
+                <div class="fp-tags-row"><span class="p-tag">React</span><span class="p-tag">Vercel</span></div>
+                <span class="fp-arrow">&#8599;</span>
+              </div>
+            </a>
+            <a href="https://sandsyntax-front.vercel.app/" target="_blank" rel="noopener" class="fp-card r">
+              <div class="fp-icon">&#129329;</div>
+              <div class="fp-card-name">SandSyntax</div>
+              <div class="fp-card-desc">Tech brand landing page — sharp layout, strong typographic hierarchy, clean sections.</div>
+              <div class="fp-card-bottom">
+                <div class="fp-tags-row"><span class="p-tag">React</span><span class="p-tag">Vercel</span></div>
+                <span class="fp-arrow">&#8599;</span>
+              </div>
+            </a>
+            <a href="https://waterbnb-virid.vercel.app/" target="_blank" rel="noopener" class="fp-card r">
+              <div class="fp-icon">&#127969;</div>
+              <div class="fp-card-name">WaterBnB</div>
+              <div class="fp-card-desc">Airbnb-inspired rental listing UI — property cards, filters, booking-style layout.</div>
+              <div class="fp-card-bottom">
+                <div class="fp-tags-row"><span class="p-tag">React</span><span class="p-tag">Vercel</span></div>
+                <span class="fp-arrow">&#8599;</span>
+              </div>
+            </a>
+          </div><!-- /fp-grid -->
+
         </div><!-- /projects-inner -->
-      </section>
-
-      <!-- ─── FRONTEND BUILDS ─── -->
-      <section class="fp-sec" id="frontend-builds">
-        <span class="fp-eyebrow r">Frontend Builds</span>
-        <h2 class="fp-big-title r">
-          Curious What Else<br /><em>I've Built?</em>
-        </h2>
-        <p class="fp-big-sub r">
-          Focused UI experiments — each one deployed, each one solving something real.
-        </p>
-        <div class="fp-cta-row r">
-          <a href="https://github.com/Shaeel-0005/frontend-projects-practice" target="_blank" rel="noopener" class="fp-cta-btn">
-            See all Projects
-            <span class="fp-cta-orb">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </span>
-          </a>
-        </div>
-
-        <!-- Fan gallery -->
-        <div class="fp-fan r">
-
-          <!-- Left edge (partially visible, heavily tilted) -->
-          <div class="fp-fan-item edge left-edge">
-            <div class="fp-fan-thumb">
-              <img src="https://images.unsplash.com/photo-1555421689-491a97ff2040?w=500&q=80&fit=crop&crop=top" alt="" loading="lazy" />
-            </div>
-            <div class="fp-fan-label">
-              <div class="fp-fan-num">#05</div>
-              <div class="fp-fan-name">More →</div>
-            </div>
-          </div>
-
-          <!-- Left far -->
-          <div class="fp-fan-item far left-far">
-            <a href="https://waterbnb-virid.vercel.app/" target="_blank" rel="noopener" style="display:contents;text-decoration:none">
-            <div class="fp-fan-thumb">
-              <img src="/assets/frontend/waterbnb.png" alt="WaterBnB" loading="lazy" />
-            </div>
-            <div class="fp-fan-label">
-              <div class="fp-fan-num">#04</div>
-              <div class="fp-fan-name">WaterBnB</div>
-            </div>
-            </a>
-          </div>
-
-          <!-- Left near -->
-          <div class="fp-fan-item near left-near">
-            <a href="https://sandsyntax-front.vercel.app/" target="_blank" rel="noopener" style="display:contents;text-decoration:none">
-            <div class="fp-fan-thumb">
-              <img src="/assets/frontend/sandsyntax.png" alt="SandSyntax" loading="lazy" />
-            </div>
-            <div class="fp-fan-label">
-              <div class="fp-fan-num">#03</div>
-              <div class="fp-fan-name">SandSyntax</div>
-            </div>
-            </a>
-          </div>
-
-          <!-- Centre (tallest, straight-on) -->
-          <div class="fp-fan-item center">
-            <a href="https://ticket-generator-shaeel.vercel.app/" target="_blank" rel="noopener" style="display:contents;text-decoration:none">
-            <div class="fp-fan-thumb">
-              <img src="/assets/frontend/ticketgenerator.png" alt="Ticket Generator" loading="lazy" />
-            </div>
-            <div class="fp-fan-label">
-              <div class="fp-fan-num">#01</div>
-              <div class="fp-fan-name">Ticket Generator</div>
-            </div>
-            </a>
-          </div>
-
-          <!-- Right near -->
-          <div class="fp-fan-item near right-near">
-            <a href="https://banking-app-hoobank-react-tailwind.vercel.app/" target="_blank" rel="noopener" style="display:contents;text-decoration:none">
-            <div class="fp-fan-thumb">
-              <img src="/assets/frontend/hoobank.png" alt="Nex Games" loading="lazy" />
-            </div>
-            <div class="fp-fan-label">
-              <div class="fp-fan-num">#02</div>
-              <div class="fp-fan-name">Hoo Bank</div>
-            </div>
-            </a>
-          </div>
-
-          <!-- Right far -->
-          <div class="fp-fan-item far right-far">
-            <a href="https://shaeel.com" target="_blank" rel="noopener" style="display:contents;text-decoration:none">
-            <div class="fp-fan-thumb">
-              <img src="/assets/frontend/shaeelportfolio.png" alt="Frontend" loading="lazy" />
-            </div>
-            <div class="fp-fan-label">
-              <div class="fp-fan-num">#05</div>
-              <div class="fp-fan-name">Shaeel</div>
-            </div>
-            </a>
-          </div>
-
-          <!-- Right edge -->
-          <div class="fp-fan-item edge right-edge">
-            <div class="fp-fan-thumb">
-              <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&q=80&fit=crop&crop=top" alt="" loading="lazy" />
-            </div>
-            <div class="fp-fan-label">
-              <div class="fp-fan-num">#06</div>
-              <div class="fp-fan-name">More</div>
-            </div>
-          </div>
-
-        </div><!-- /fp-fan -->
       </section>
 
             <!-- ─── SKILLS ─── -->
